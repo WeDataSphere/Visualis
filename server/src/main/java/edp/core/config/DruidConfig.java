@@ -137,12 +137,6 @@ public class DruidConfig {
         if((Boolean) CommonConfig.ENABLE_PASSWORD_ENCRYPT().getValue()){
             String pubKey = CommonConfig.LINKIS_MYSQL_PUB_KEY().getValue();
             String priKey = CommonConfig.LINKIS_MYSQL_PRIV_KEY().getValue();
-            try {
-//                password = EncryptUtil.decrypt(priKey, password);
-            } catch (Exception e) {
-                log.error("failed to decrypt password for {}", password, e);
-                System.exit(-2);
-            }
         }
         druidDataSource.setPassword(password);
         druidDataSource.setDriverClassName(driverClassName);

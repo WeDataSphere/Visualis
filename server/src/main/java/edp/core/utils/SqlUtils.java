@@ -136,7 +136,6 @@ public class SqlUtils {
             try {
 //                decryptedPassword = EncryptUtil.decrypt(passwordPrivateKey[1], passwordPrivateKey[0]);
             } catch (Exception e) {
-                log.error("failed to decrypt password for {" + password + "}", e);
                 throw new ServerException("failed to decrypt password", e);
             }
             return decryptedPassword;

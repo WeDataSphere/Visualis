@@ -60,7 +60,6 @@ public class HiveSource extends Source {
             JSONObject jsonObject = JSONObject.parseObject(this.config);
             password = jsonObject.getString("password");
         } catch (Exception e) {
-            log.error("get jdbc password from source config, {}", e.getMessage());
         }
         return password;
     }

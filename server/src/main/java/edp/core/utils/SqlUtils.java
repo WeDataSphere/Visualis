@@ -134,9 +134,7 @@ public class SqlUtils {
             String decryptedPassword = "";
             String[] passwordPrivateKey = org.apache.commons.lang.StringUtils.split(password, "@");
             try {
-//                decryptedPassword = EncryptUtil.decrypt(passwordPrivateKey[1], passwordPrivateKey[0]);
             } catch (Exception e) {
-                throw new ServerException("failed to decrypt password", e);
             }
             return decryptedPassword;
         } else {

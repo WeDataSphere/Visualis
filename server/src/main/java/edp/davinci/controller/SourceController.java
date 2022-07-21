@@ -387,7 +387,7 @@ public class SourceController extends BaseController {
         sourceTableInfo.setTableName(tableName);
         BeanUtils.copyProperties(tableInfo, sourceTableInfo);
 
-        return ResponseEntity.ok(new ResultMap(tokenUtils).successAndRefreshToken(request).payload(sourceTableInfo));
+        return ResponseEntity.ok(new ResultMap());
     }
 
 

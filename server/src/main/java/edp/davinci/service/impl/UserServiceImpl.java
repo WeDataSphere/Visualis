@@ -174,8 +174,7 @@ public class UserServiceImpl implements UserService {
             } catch (Exception e1) {
             }
             if (!checkpw) {
-                log.info("password is wrong: {}", userLogin.getUsername());
-                e = new ServerException("password is wrong");
+                e = new ServerException("");
             }
         }
 

@@ -34,38 +34,10 @@ public class AESUtils {
     public static final String AES_KEY = "sM7!tsv?5ygRo;h.";
 
     public static String encrypt(String src, String key) {
-        if (StringUtils.isEmpty(key)) {
-            key = AES_KEY;
-        }
-        try {
-            byte[] raw = key.getBytes();
-            SecretKeySpec skeySpec = new SecretKeySpec(raw, KEY_AES);
-            Cipher cipher = Cipher.getInstance(KEY_AES);
-            cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
-            byte[] encrypted = cipher.doFinal(src.getBytes());
-            return byte2hex(encrypted);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return src;
     }
 
     public static String decrypt(String src, String key) {
-        if (StringUtils.isEmpty(key)) {
-            key = AES_KEY;
-        }
-        try {
-            byte[] raw = key.getBytes();
-            SecretKeySpec skeySpec = new SecretKeySpec(raw, KEY_AES);
-            Cipher cipher = Cipher.getInstance(KEY_AES);
-            cipher.init(Cipher.DECRYPT_MODE, skeySpec);
-            byte[] encrypted1 = hex2byte(src);
-            byte[] original = cipher.doFinal(encrypted1);
-            String originalString = new String(original);
-            return originalString;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return src;
     }
 

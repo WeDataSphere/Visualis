@@ -118,7 +118,6 @@ public class Source extends BaseSource {
             JSONObject jsonObject = JSONObject.parseObject(this.config);
             password = jsonObject.getString("password");
         } catch (Exception e) {
-            log.error("get jdbc password from source config, {}", e.getMessage());
         }
         return password;
     }

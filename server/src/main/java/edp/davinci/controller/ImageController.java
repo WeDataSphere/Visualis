@@ -35,9 +35,7 @@ public class ImageController {
 
         FileInputStream inputStream = null;
         try {
-            String path = fileBasePath + File.separator + "image" + File.separator + "display" + File.separator + fileName + ".png";
-            File file = new File(path);
-            inputStream = new FileInputStream(file);
+            File file = null;
             response.setContentType(MediaType.IMAGE_PNG_VALUE);
             IOUtils.copy(inputStream, response.getOutputStream());
         } catch (IOException e) {

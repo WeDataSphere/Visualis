@@ -88,37 +88,6 @@ public class LdapServiceImpl implements LdapService {
     @Override
     public LdapPerson findByUsername(String username, String password) {
         LdapPerson ldapPerson = null;
-
-        if (StringUtils.endsWithIgnoreCase(username, ldapDomainName)) {
-            username = username.replaceAll("(?i)" + ldapDomainName, EMPTY);
-        }
-        String userDn = username + ldapDomainName;
-
-        DirContext ctx = null;
-        try {
-            ctx = ldapTemplate.getContextSource().getContext(userDn, password);
-
-            List<LdapPerson> search = ldapTemplate.search(
-                    query().where("objectclass").is("person").and("sAMAccountName").is(username),
-                    (AttributesMapper<LdapPerson>) attributes -> {
-                        LdapPerson person = new LdapPerson();
-                        person.setName(attributes.get("cn").get().toString());
-                        person.setSAMAccountName(attributes.get("sAMAccountName").get().toString());
-                        person.setEmail(userDn);
-                        return person;
-                    });
-
-            if (!CollectionUtils.isEmpty(search)) {
-                ldapPerson = search.get(0);
-            }
-        } catch (Exception e) {
-            log.error("LDAP lookup user failed: ", e);
-        } finally {
-            if (null != ctx) {
-                LdapUtils.closeContext(ctx);
-            }
-        }
-
         return ldapPerson;
     }
 
@@ -126,23 +95,6 @@ public class LdapServiceImpl implements LdapService {
     @Transactional
     public User registPerson(LdapPerson ldapPerson) throws ServerException {
         User user = new User(ldapPerson);
-        user.setActive(true);
-        user.setPassword(LDAP_USER_PASSWORD);
-
-        int insert = userMapper.insert(user);
-        if (insert > 0) {
-            String OrgName = user.getUsername() + "'s Organization";
-
-            Organization organization = new Organization(OrgName, null, user.getId());
-            int i = organizationMapper.insert(organization);
-            if (i > 0) {
-                RelUserOrganization relUserOrganization = new RelUserOrganization(organization.getId(), user.getId(), UserOrgRoleEnum.OWNER.getRole());
-                relUserOrganizationMapper.insert(relUserOrganization);
-            }
-
-        } else {
-            throw new ServerException("unknown fail");
-        }
         return user;
     }
 }

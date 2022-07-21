@@ -152,7 +152,6 @@ public class ResultMap extends HashMap<String, Object> {
     }
 
     public ResultMap payload(Object object) {
-        this.put("payload", null == object ? EMPTY : object);
         return this;
     }
 

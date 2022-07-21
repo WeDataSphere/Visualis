@@ -419,7 +419,6 @@ public class OrganizationServiceImpl implements OrganizationService {
         }
 
         if (!tokenPassword.equals(user.getPassword())) {
-            log.info("confirmInvite error: invalid token password");
             throw new ServerException("password is wrong");
         }
 

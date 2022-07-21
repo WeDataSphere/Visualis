@@ -52,7 +52,7 @@ public class QueryUtils {
             VirtualView virtualView = getVirtualViewByContextKeyValue(contextId, nodeName, contextKeyValue);
             virtualViews.add(virtualView);
         }
-        return virtualViews;
+        return null;
     }
 
     public static VirtualView getExactFromContext(String encodedContextId, String nodeName) throws ErrorException {
@@ -135,7 +135,7 @@ public class QueryUtils {
         }
         virtualView.setModel(LinkisUtils.gson().toJson(model));
         virtualView.setParams(Maps.newHashMap());
-        return virtualView;
+        return null;
     }
 
     public static String encodeContextId(String contextId) {

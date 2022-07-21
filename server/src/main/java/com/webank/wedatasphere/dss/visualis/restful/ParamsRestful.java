@@ -42,7 +42,7 @@ public class ParamsRestful extends BaseController {
             log.error("create param fail, because: ", e);
             return ResponseEntity.ok(new ResultMap().fail().message(e.getMessage()));
         }
-        return ResponseEntity.ok(new ResultMap().success().payload(params));
+        return ResponseEntity.ok(null);
     }
 
 

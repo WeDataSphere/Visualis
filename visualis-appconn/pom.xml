@@ -121,7 +121,18 @@
                     <artifactId>linkis-common</artifactId>
                     <groupId>org.apache.linkis</groupId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.apache.zookeeper</groupId>
+                    <artifactId>zookeeper</artifactId>
+                </exclusion>
             </exclusions>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>2.4.14</version>
         </dependency>
 
         <dependency>
@@ -129,6 +140,12 @@
             <artifactId>dss-common</artifactId>
             <version>${opensource.dss.version}</version>
             <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.codehaus.jackson</groupId>
+                    <artifactId>jackson-mapper-asl</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>

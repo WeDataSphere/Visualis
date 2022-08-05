@@ -50,4 +50,6 @@ object CommonConfig {
   val JDBC_WHITELIST = CommonVars("wds.dss.visualis.jdbc.whitelist", "")
 
   val JDBC_ENCRYPT_PARAMETER = CommonVars("wds.dss.visualis.jdbc.encrypt.parameter", "encrypt=true")
+
+  val EDITABLE_SWITCH = CommonVars("wds.dss.visualis.editable.switch", false)
 }

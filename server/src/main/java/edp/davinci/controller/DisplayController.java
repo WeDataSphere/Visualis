@@ -23,6 +23,8 @@ import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSONArray;
 import com.google.common.collect.Iterables;
 import com.webank.wedatasphere.dss.visualis.auth.ProjectAuth;
+import com.webank.wedatasphere.dss.visualis.auth.SandboxRefuse;
+import com.webank.wedatasphere.dss.visualis.configuration.CommonConfig;
 import edp.core.annotation.CurrentUser;
 import edp.core.annotation.MethodLog;
 import edp.core.common.job.ScheduleService;
@@ -79,6 +81,9 @@ public class DisplayController extends BaseController {
     @Autowired
     private ProjectAuth projectAuth;
 
+    @Autowired
+    private SandboxRefuse sandboxRefuse;
+
     /**
      * 新建display
      *
@@ -94,6 +99,11 @@ public class DisplayController extends BaseController {
                                         BindingResult bindingResult,
                                         @CurrentUser User user,
                                         HttpServletRequest request) {
+
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
         if (bindingResult.hasErrors()) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message(bindingResult.getFieldErrors().get(0).getDefaultMessage());
             return ResponseEntity.status(resultMap.getCode()).body(resultMap);
@@ -130,6 +140,10 @@ public class DisplayController extends BaseController {
                                         @CurrentUser User user,
                                         @PathVariable Long id, HttpServletRequest request) {
 
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
         if (bindingResult.hasErrors()) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message(bindingResult.getFieldErrors().get(0).getDefaultMessage());
             return ResponseEntity.status(resultMap.getCode()).body(resultMap);
@@ -157,6 +171,10 @@ public class DisplayController extends BaseController {
     public ResponseEntity deleteDisplay(@PathVariable Long id,
                                         @CurrentUser User user,
                                         HttpServletRequest request) {
+
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
 
         if (invalidId(id)) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message("Invalid display id");
@@ -186,6 +204,11 @@ public class DisplayController extends BaseController {
                                              @PathVariable("id") Long displayId,
                                              @CurrentUser User user,
                                              HttpServletRequest request) {
+
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
 
         if (bindingResult.hasErrors()) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message(bindingResult.getFieldErrors().get(0).getDefaultMessage());
@@ -217,6 +240,10 @@ public class DisplayController extends BaseController {
                                              BindingResult bindingResult,
                                              @CurrentUser User user,
                                              @PathVariable("id") Long displayId, HttpServletRequest request) {
+
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
 
         if (bindingResult.hasErrors()) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message(bindingResult.getFieldErrors().get(0).getDefaultMessage());
@@ -252,6 +279,10 @@ public class DisplayController extends BaseController {
                                              @CurrentUser User user,
                                              HttpServletRequest request) {
 
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
         if (invalidId(slideId)) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message("Invalid display slide id");
             return ResponseEntity.status(resultMap.getCode()).body(resultMap);
@@ -281,6 +312,10 @@ public class DisplayController extends BaseController {
                                                     BindingResult bindingResult,
                                                     @CurrentUser User user,
                                                     HttpServletRequest request) {
+
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
 
         if (invalidId(displayId)) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message("Invalid display id");
@@ -337,6 +372,10 @@ public class DisplayController extends BaseController {
                                                        @CurrentUser User user,
                                                        HttpServletRequest request) {
 
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
         if (invalidId(displayId)) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message("Invalid display id");
             return ResponseEntity.status(resultMap.getCode()).body(resultMap);
@@ -391,6 +430,10 @@ public class DisplayController extends BaseController {
                                                       @CurrentUser User user,
                                                       HttpServletRequest request) {
 
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
         if (bindingResult.hasErrors()) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message(bindingResult.getFieldErrors().get(0).getDefaultMessage());
             return ResponseEntity.status(resultMap.getCode()).body(resultMap);
@@ -419,6 +462,10 @@ public class DisplayController extends BaseController {
     public ResponseEntity deleteMemDisplaySlideWidget(@PathVariable("relationId") Long relationId,
                                                       @CurrentUser User user,
                                                       HttpServletRequest request) {
+
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
 
         if (invalidId(relationId)) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message("Invalid relation id");
@@ -523,6 +570,10 @@ public class DisplayController extends BaseController {
                                                    @CurrentUser User user,
                                                    HttpServletRequest request) {
 
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
         Long[] ids = ((JSONArray) param.get("slides")).toJavaList(Long.class).toArray(new Long[]{});
 
         if (invalidId(displayId)) {
@@ -557,6 +608,10 @@ public class DisplayController extends BaseController {
     public ResponseEntity uploadAvatar(@RequestParam("coverImage") MultipartFile file,
                                        HttpServletRequest request) {
 
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
 
         if (file.isEmpty() || StringUtils.isEmpty(file.getOriginalFilename())) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message("file can not be EMPTY");
@@ -583,6 +638,10 @@ public class DisplayController extends BaseController {
                                              @RequestParam("backgroundImage") MultipartFile file,
                                              @CurrentUser User user,
                                              HttpServletRequest request) {
+
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
 
         if (invalidId(slideId)) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message("Invalid slide id");
@@ -613,6 +672,10 @@ public class DisplayController extends BaseController {
                                                       @RequestParam("backgroundImage") MultipartFile file,
                                                       @CurrentUser User user,
                                                       HttpServletRequest request) {
+
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
 
         if (invalidId(relationId)) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message("Invalid relation id");

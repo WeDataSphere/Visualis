@@ -20,6 +20,8 @@
 package edp.davinci.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.webank.wedatasphere.dss.visualis.auth.SandboxRefuse;
+import com.webank.wedatasphere.dss.visualis.configuration.CommonConfig;
 import edp.core.annotation.CurrentUser;
 import edp.core.annotation.MethodLog;
 import edp.davinci.common.controller.BaseController;
@@ -55,6 +57,9 @@ public class ProjectController extends BaseController {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private SandboxRefuse sandboxRefuse;
 
 
     /**
@@ -165,6 +170,11 @@ public class ProjectController extends BaseController {
                                         BindingResult bindingResult,
                                         @CurrentUser User user,
                                         HttpServletRequest request) {
+
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
         if (bindingResult.hasErrors()) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message(bindingResult.getFieldErrors().get(0).getDefaultMessage());
             return ResponseEntity.status(resultMap.getCode()).body(resultMap);
@@ -219,6 +229,12 @@ public class ProjectController extends BaseController {
     public ResponseEntity deleteProject(@PathVariable Long id,
                                         @CurrentUser User user,
                                         HttpServletRequest request) {
+
+
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
         if (invalidId(id)) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message("Invalid project id");
             return ResponseEntity.status(resultMap.getCode()).body(resultMap);
@@ -245,6 +261,11 @@ public class ProjectController extends BaseController {
                                                 BindingResult bindingResult,
                                                 @CurrentUser User user,
                                                 HttpServletRequest request) {
+
+
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
 
         if (invalidId(id)) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message("Invalid project id");

@@ -21,6 +21,8 @@ package edp.davinci.controller;
 
 
 import com.webank.wedatasphere.dss.visualis.auth.ProjectAuth;
+import com.webank.wedatasphere.dss.visualis.auth.SandboxRefuse;
+import com.webank.wedatasphere.dss.visualis.configuration.CommonConfig;
 import edp.core.annotation.CurrentUser;
 import edp.core.annotation.MethodLog;
 import edp.davinci.common.controller.BaseController;
@@ -58,6 +60,9 @@ public class DashboardController extends BaseController {
 
     @Autowired
     private ProjectAuth projectAuth;
+
+    @Autowired
+    private SandboxRefuse sandboxRefuse;
 
     /**
      * 获取dashboardPortal列表
@@ -190,6 +195,10 @@ public class DashboardController extends BaseController {
                                                 BindingResult bindingResult,
                                                 @CurrentUser User user,
                                                 HttpServletRequest request) {
+        
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
 
         if (bindingResult.hasErrors()) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message(bindingResult.getFieldErrors().get(0).getDefaultMessage());
@@ -223,6 +232,10 @@ public class DashboardController extends BaseController {
                                                 @CurrentUser User user,
                                                 HttpServletRequest request) {
 
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
         if (bindingResult.hasErrors()) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message(bindingResult.getFieldErrors().get(0).getDefaultMessage());
             return ResponseEntity.status(resultMap.getCode()).body(resultMap);
@@ -252,6 +265,10 @@ public class DashboardController extends BaseController {
                                                 @CurrentUser User user,
                                                 HttpServletRequest request) {
 
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
         if (invalidId(id)) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message("Invalid id");
             return ResponseEntity.status(resultMap.getCode()).body(resultMap);
@@ -279,6 +296,10 @@ public class DashboardController extends BaseController {
                                           BindingResult bindingResult,
                                           @CurrentUser User user,
                                           HttpServletRequest request) {
+
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
 
         if (bindingResult.hasErrors()) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message(bindingResult.getFieldErrors().get(0).getDefaultMessage());
@@ -312,6 +333,10 @@ public class DashboardController extends BaseController {
                                            @CurrentUser User user,
                                            HttpServletRequest request) {
 
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
         if (bindingResult.hasErrors()) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message(bindingResult.getFieldErrors().get(0).getDefaultMessage());
             return ResponseEntity.status(resultMap.getCode()).body(resultMap);
@@ -343,6 +368,10 @@ public class DashboardController extends BaseController {
                                           @CurrentUser User user,
                                           HttpServletRequest request) {
 
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
         if (invalidId(dashboardId)) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message("Invalid id");
             return ResponseEntity.status(resultMap.getCode()).body(resultMap);
@@ -372,6 +401,11 @@ public class DashboardController extends BaseController {
                                                    BindingResult bindingResult,
                                                    @CurrentUser User user,
                                                    HttpServletRequest request) {
+
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
         if (invalidId(portalId)) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message("Invalid dashboard portal id");
             return ResponseEntity.status(resultMap.getCode()).body(resultMap);
@@ -414,6 +448,11 @@ public class DashboardController extends BaseController {
                                                    BindingResult bindingResult,
                                                    @CurrentUser User user,
                                                    HttpServletRequest request) {
+
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
         if (bindingResult.hasErrors()) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message(bindingResult.getFieldErrors().get(0).getDefaultMessage());
             return ResponseEntity.status(resultMap.getCode()).body(resultMap);
@@ -459,6 +498,11 @@ public class DashboardController extends BaseController {
     public ResponseEntity deleteMemDashboardWidget(@PathVariable Long relationId,
                                                    @CurrentUser User user,
                                                    HttpServletRequest request) {
+
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
         dashboardService.deleteMemDashboardWidget(relationId, user);
         return ResponseEntity.ok(new ResultMap(tokenUtils).successAndRefreshToken(request));
     }

@@ -21,6 +21,8 @@ package edp.davinci.controller;
 
 import com.google.common.collect.Lists;
 import com.webank.wedatasphere.dss.visualis.auth.ProjectAuth;
+import com.webank.wedatasphere.dss.visualis.auth.SandboxRefuse;
+import com.webank.wedatasphere.dss.visualis.configuration.CommonConfig;
 import com.webank.wedatasphere.dss.visualis.query.service.VirtualViewQueryService;
 import com.webank.wedatasphere.dss.visualis.query.utils.EnvLimitUtils;
 import com.webank.wedatasphere.dss.visualis.query.utils.QueryUtils;
@@ -72,6 +74,11 @@ public class ViewController extends BaseController {
 
     @Autowired
     private ProjectAuth projectAuth;
+
+
+    @Autowired
+    private SandboxRefuse sandboxRefuse;
+
 
     // 工作流创建widget时调用Step 3
     /**
@@ -146,6 +153,10 @@ public class ViewController extends BaseController {
                                      @CurrentUser User user,
                                      HttpServletRequest request) {
 
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
         if (bindingResult.hasErrors()) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message(bindingResult.getFieldErrors().get(0).getDefaultMessage());
             return ResponseEntity.status(resultMap.getCode()).body(resultMap);
@@ -184,6 +195,10 @@ public class ViewController extends BaseController {
                                      @CurrentUser User user,
                                      HttpServletRequest request) {
 
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
 
         if (invalidId(id) || !id.equals(viewUpdate.getId())) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message("Invalid view id");
@@ -218,6 +233,11 @@ public class ViewController extends BaseController {
     public ResponseEntity deleteView(@PathVariable Long id,
                                      @CurrentUser User user,
                                      HttpServletRequest request) {
+
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
         if (invalidId(id)) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message("Invalid view id");
             return ResponseEntity.status(resultMap.getCode()).body(resultMap);

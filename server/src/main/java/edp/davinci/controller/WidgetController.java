@@ -21,6 +21,8 @@ package edp.davinci.controller;
 
 
 import com.webank.wedatasphere.dss.visualis.auth.ProjectAuth;
+import com.webank.wedatasphere.dss.visualis.auth.SandboxRefuse;
+import com.webank.wedatasphere.dss.visualis.configuration.CommonConfig;
 import edp.core.annotation.CurrentUser;
 import edp.core.annotation.MethodLog;
 import edp.davinci.common.controller.BaseController;
@@ -54,6 +56,10 @@ public class WidgetController extends BaseController {
 
     @Autowired
     private ProjectAuth projectAuth;
+
+
+    @Autowired
+    private SandboxRefuse sandboxRefuse;
 
     @MethodLog
     @GetMapping
@@ -89,6 +95,11 @@ public class WidgetController extends BaseController {
                                         BindingResult bindingResult,
                                         @CurrentUser User user,
                                         HttpServletRequest request) {
+
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
         if (bindingResult.hasErrors()) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message(bindingResult.getFieldErrors().get(0).getDefaultMessage());
             return ResponseEntity.status(resultMap.getCode()).body(resultMap);
@@ -111,6 +122,10 @@ public class WidgetController extends BaseController {
                                        @CurrentUser User user,
                                        HttpServletRequest request) {
 
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
+
         if (bindingResult.hasErrors()) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message(bindingResult.getFieldErrors().get(0).getDefaultMessage());
             return ResponseEntity.status(resultMap.getCode()).body(resultMap);
@@ -131,6 +146,10 @@ public class WidgetController extends BaseController {
     public ResponseEntity deleteWidget(@PathVariable Long id,
                                        @CurrentUser User user,
                                        HttpServletRequest request) {
+
+        if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
+            sandboxRefuse.sandboxEditableRefuse();
+        }
 
         if (invalidId(id)) {
             ResultMap resultMap = new ResultMap(tokenUtils).failAndRefreshToken(request).message("Invalid id");

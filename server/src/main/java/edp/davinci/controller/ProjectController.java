@@ -37,6 +37,7 @@ import edp.davinci.service.ProjectService;
 import edp.davinci.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -172,7 +173,10 @@ public class ProjectController extends BaseController {
                                         HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            return sandboxRefuse.sandboxEditableRefuse();
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(new ResultMap(tokenUtils)
+                    .fail()
+                    .payload("[Sandbox environment cannot create project!]沙箱环境不允许创建项目！"));
         }
 
         if (bindingResult.hasErrors()) {

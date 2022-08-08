@@ -154,7 +154,7 @@ public class ViewController extends BaseController {
                                      HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (bindingResult.hasErrors()) {
@@ -196,7 +196,7 @@ public class ViewController extends BaseController {
                                      HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
 
@@ -235,7 +235,7 @@ public class ViewController extends BaseController {
                                      HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (invalidId(id)) {

@@ -197,7 +197,7 @@ public class DashboardController extends BaseController {
                                                 HttpServletRequest request) {
         
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (bindingResult.hasErrors()) {
@@ -233,7 +233,7 @@ public class DashboardController extends BaseController {
                                                 HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (bindingResult.hasErrors()) {
@@ -266,7 +266,7 @@ public class DashboardController extends BaseController {
                                                 HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (invalidId(id)) {
@@ -298,7 +298,7 @@ public class DashboardController extends BaseController {
                                           HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (bindingResult.hasErrors()) {
@@ -334,7 +334,7 @@ public class DashboardController extends BaseController {
                                            HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (bindingResult.hasErrors()) {
@@ -369,7 +369,7 @@ public class DashboardController extends BaseController {
                                           HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (invalidId(dashboardId)) {
@@ -403,7 +403,7 @@ public class DashboardController extends BaseController {
                                                    HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (invalidId(portalId)) {
@@ -450,7 +450,7 @@ public class DashboardController extends BaseController {
                                                    HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (bindingResult.hasErrors()) {
@@ -500,7 +500,7 @@ public class DashboardController extends BaseController {
                                                    HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         dashboardService.deleteMemDashboardWidget(relationId, user);

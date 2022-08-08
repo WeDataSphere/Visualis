@@ -172,7 +172,7 @@ public class ProjectController extends BaseController {
                                         HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (bindingResult.hasErrors()) {
@@ -232,7 +232,7 @@ public class ProjectController extends BaseController {
 
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (invalidId(id)) {
@@ -264,7 +264,7 @@ public class ProjectController extends BaseController {
 
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (invalidId(id)) {

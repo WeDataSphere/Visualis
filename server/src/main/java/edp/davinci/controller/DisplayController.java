@@ -101,7 +101,7 @@ public class DisplayController extends BaseController {
                                         HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (bindingResult.hasErrors()) {
@@ -141,7 +141,7 @@ public class DisplayController extends BaseController {
                                         @PathVariable Long id, HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (bindingResult.hasErrors()) {
@@ -173,7 +173,7 @@ public class DisplayController extends BaseController {
                                         HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (invalidId(id)) {
@@ -206,7 +206,7 @@ public class DisplayController extends BaseController {
                                              HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
 
@@ -242,7 +242,7 @@ public class DisplayController extends BaseController {
                                              @PathVariable("id") Long displayId, HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (bindingResult.hasErrors()) {
@@ -280,7 +280,7 @@ public class DisplayController extends BaseController {
                                              HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (invalidId(slideId)) {
@@ -314,7 +314,7 @@ public class DisplayController extends BaseController {
                                                     HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (invalidId(displayId)) {
@@ -373,7 +373,7 @@ public class DisplayController extends BaseController {
                                                        HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (invalidId(displayId)) {
@@ -431,7 +431,7 @@ public class DisplayController extends BaseController {
                                                       HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (bindingResult.hasErrors()) {
@@ -464,7 +464,7 @@ public class DisplayController extends BaseController {
                                                       HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (invalidId(relationId)) {
@@ -571,7 +571,7 @@ public class DisplayController extends BaseController {
                                                    HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         Long[] ids = ((JSONArray) param.get("slides")).toJavaList(Long.class).toArray(new Long[]{});
@@ -609,7 +609,7 @@ public class DisplayController extends BaseController {
                                        HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
 
@@ -640,7 +640,7 @@ public class DisplayController extends BaseController {
                                              HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (invalidId(slideId)) {
@@ -674,7 +674,7 @@ public class DisplayController extends BaseController {
                                                       HttpServletRequest request) {
 
         if((Boolean) CommonConfig.EDITABLE_SWITCH().getValue()) {
-            sandboxRefuse.sandboxEditableRefuse();
+            return sandboxRefuse.sandboxEditableRefuse();
         }
 
         if (invalidId(relationId)) {

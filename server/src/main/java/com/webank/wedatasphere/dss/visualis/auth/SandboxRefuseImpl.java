@@ -1,6 +1,5 @@
 package com.webank.wedatasphere.dss.visualis.auth;
 
-import com.webank.wedatasphere.dss.visualis.configuration.CommonConfig;
 import edp.davinci.core.common.ResultMap;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

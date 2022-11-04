@@ -1,17 +1,33 @@
+name: Build and Deploy
+
 on:
-  pull_request
+  pull_request:
+    branches: [master,dev-*]
+  push:
+    branches: [master,dev-*]
+  schedule:
+    # Run everyday at 9:00 AM (See https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07)
+    - cron: "0 5 * * *"
 
-
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  CheckDeadLinks:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    timeout-minutes: 30
-    if: (github.repository == 'WeDataSphere/Visualis')
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v3
-      - uses: gaurav-nelson/github-action-markdown-link-check@v1
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2.3.4
+      - uses: actions/setup-node@v2.2.0
         with:
-          use-quiet-mode: 'no'
-          use-verbose-mode: 'yes'
-          folder-path: '../'
-          config-file: '.github/workflows/dlc.json'
+          node-version: 14
+           
+      - name: Link checker
+        uses: untitaker/hyperlink@0.1.21
+        with:
+          args: /home/runner/work/incubator-linkis-website/incubator-linkis-website/build
+          
+          
+          

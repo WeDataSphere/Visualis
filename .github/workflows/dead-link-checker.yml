@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Link checker
 
 on:
   pull_request:
@@ -26,8 +26,6 @@ jobs:
            
       - name: Link checker
         uses: untitaker/hyperlink@0.1.21
-        with:
-          args: /home/runner/work/incubator-linkis-website/incubator-linkis-website/build
           
           
           

@@ -1,12 +1,18 @@
-on:
-  pull_request
+name: Link checker
 
+on:
+  pull_request:
+    branches: [master,dev-*]
+  push:
+    branches: [master,dev-*]
+  schedule:
+    # Run everyday at 9:00 AM (See https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html#tag_20_25_07)
+    - cron: "0 5 * * *"
 
 jobs:
   CheckDeadLinks:
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    if: (github.repository == 'WeDataSphere/Visualis')
     steps:
       - uses: actions/checkout@v3
       - uses: gaurav-nelson/github-action-markdown-link-check@v1
@@ -15,3 +21,6 @@ jobs:
           use-verbose-mode: 'yes'
           folder-path: '../'
           config-file: '.github/workflows/dlc.json'
+          
+          
+          
